@@ -5,12 +5,12 @@ import './Add.css';
 const Add = () => {
     return ( 
         <div className="Add">
-            <div className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-white">
+            <div className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg2 bg-cover">
             <Navbar></Navbar>
             
-            <div className="">
+            <div className="min-h-screen flex items-center justify-center">
             <form action="#" method="POST">
-                <div className="shadow sm:rounded-md sm:overflow-hidden">
+                <div className="shadow sm:rounded-md bg-white sm:overflow-hidden">
                     <div className="px-4 py-5 space-y-6 sm:p-6">
                         <div className="">
                             <div className="col-span-3 sm:col-span-2">
