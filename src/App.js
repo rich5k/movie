@@ -3,12 +3,16 @@ import Home from './Home';
 import Add from './Add';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SignIn from './SignIn';
+import ViewMore from './ViewMore';
 function App() {
   return (
     <div className="App">
       {/* <SignIn/> */}
       <Router>
           <Switch>
+          <Route path="/viewmore">
+                <ViewMore />
+            </Route>
           <Route path="/signin">
                 <SignIn />
             </Route>
