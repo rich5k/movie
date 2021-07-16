@@ -40,11 +40,12 @@ function Home() {
             <div class="content-overlay"></div>
             <img class="w-full content-image" src={img} alt="Mulan" />
             <div class="content-details fadeIn-bottom">
-              <h3 class="content-title">
-                <svg xmlns="http://www.w3.org/2000/svg" className="text-yellow-300 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg> 
+              <div class="flex items-center justify-center">
+
+              <svg class="mx-4 w-4 h-4 fill-current text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <h3 class="content-title   ">
                   4.0/5.0</h3>
+              </div>
               <p class="content-text">This is a short description</p>
               <button class="my-2 bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
                     Rate

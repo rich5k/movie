@@ -5,12 +5,18 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SignIn from './SignIn';
 import ViewMore from './ViewMore';
 import SignUp from './SignUp';
+import Rate from './Rate';
 function App() {
+  //connect to mongodb
+  const dbURI= 'mongodb+srv://netninja:test1234@nodetuts.4xoyw.mongodb.net/movierater?retryWrites=true&w=majority';
   return (
     <div className="App">
       {/* <SignIn/> */}
       <Router>
           <Switch>
+          <Route path="/rate">
+                <Rate />
+            </Route> 
           <Route path="/signup">
                 <SignUp />
             </Route>
