@@ -1,6 +1,6 @@
 const MovieRating = require('../models/movieRatings-model');
 
-const createMovie = (req,res)=>{
+const createMovieRating = (req,res)=>{
     const body = req.body;
 
     if(!body){
@@ -33,7 +33,7 @@ const createMovie = (req,res)=>{
         })
 }
 
-const updateMovie = async(req, res)=>{
+const updateMovieRating = async(req, res)=>{
     const body = req.body;
 
     if(!body){
