@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const Movie = new Schema(
     {
-        name : {type: String},
-        description: {type: String},
+        name : String,
+        description: String,
         image: {data: Buffer, contentType: String}
     },
     {timestamps: true},

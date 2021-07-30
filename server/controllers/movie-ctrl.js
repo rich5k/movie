@@ -1,5 +1,5 @@
 const Movie = require('../models/movie-model');
-
+const fs = require('fs');
 const createMovie = (req,res)=>{
     const body = req.body;
 
@@ -16,6 +16,8 @@ const createMovie = (req,res)=>{
         return res.status(400).json({success: false, error: err});
     }
 
+    movie.image.data = fs.readFileSync(req.files.userPhoto.path);
+    movie.image.contentType = 'image/jpeg';
     movie
         .save()
         .then(()=>{
