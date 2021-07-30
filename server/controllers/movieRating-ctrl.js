@@ -16,12 +16,12 @@ const createMovieRating = (req,res)=>{
         return res.status(400).json({success: false, error: err});
     }
 
-    movie
+    movieRating
         .save()
         .then(()=>{
             return res.status(201).json({
                 success: true,
-                id: movie._id,
+                id: movieRating._id,
                 message: 'Movie rating created!',
             })
         })
@@ -43,7 +43,7 @@ const updateMovieRating = async(req, res)=>{
         })
     }
 
-    MovieRating.findOne({_id: req.params.id}, (err, movie)={
+    MovieRating.findOne({_id: req.params.id}, (err, movieRating)=>{
 
         if (err){
             return res.status(404).json({
@@ -61,7 +61,7 @@ const updateMovieRating = async(req, res)=>{
             .then(()=>{
                 return res.status(200).json({
                     success: true,
-                    id: movie._id,
+                    id: movieRating._id,
                     message: 'Movie rating updated!',
                 })
             })
@@ -87,7 +87,7 @@ const deleteMovieRating = async(req, res) => {
                 .json({success: false, error: 'Movie rating not found'})
         }
 
-        return res.status(200).json({success: true, data: movie})
+        return res.status(200).json({success: true, data: movieRating})
     }).catch(err => console.log(err))
 }
 
@@ -102,6 +102,7 @@ const getMovieRatingById = async (req, res)=>{
                 .status(404)
                 .json({success: false, error: 'Movie rating not found'})
         }
+        return res.status(200).json({success: true, data: movieRating})
     }).catch(err=> console.log(err))
 }
 
@@ -115,7 +116,7 @@ const getMovieRatings = async (req, res)=>{
                 .status(404)
                 .json({success: false, error: 'Movie rating not found'})
         }
-        return res.status(200).json({success: true, data: movies})
+        return res.status(200).json({success: true, data: movieRatings})
     }).catch(err=> console.log(err))
 }
 

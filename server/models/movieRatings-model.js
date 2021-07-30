@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const MovieRating = new Schema(
     {
-        movieId : {type: Schema.ObjectId, required: true},
-        rating: {type: Number, required: true},
-        review: {type: String, required: true},
+        movieId : {type: mongoose.ObjectId},
+        rating: {type: Number},
+        review: {type: String},
     },
     {timestamps: true},
 )

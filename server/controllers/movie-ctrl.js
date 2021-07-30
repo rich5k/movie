@@ -43,7 +43,7 @@ const updateMovie = async(req, res)=>{
         })
     }
 
-    Movie.findOne({_id: req.params.id}, (err, movie)={
+    Movie.findOne({_id: req.params.id}, (err,movie)=>{
 
         if (err){
             return res.status(404).json({
@@ -102,6 +102,7 @@ const getMovieById = async (req, res)=>{
                 .status(404)
                 .json({success: false, error: 'Movie not found'})
         }
+        return res.status(200).json({success: true, data: movie})
     }).catch(err=> console.log(err))
 }
 
