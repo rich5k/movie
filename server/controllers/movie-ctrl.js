@@ -1,38 +1,65 @@
 const Movie = require('../models/movie-model');
 const fs = require('fs');
-const createMovie = (req,res)=>{
-    const body = req.body;
+const path = require('path')
+require('dotenv/config');
+// const createMovie = (req,res)=>{
+//     const body = req.body;
 
-    if(!body){
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a movie',
-        })
+//     if(!body){
+//         return res.status(400).json({
+//             success: false,
+//             error: 'You must provide a movie',
+//         })
+//     }
+
+//     const movie = new Movie(body);
+
+//     if (!movie){
+//         return res.status(400).json({success: false, error: err});
+//     }
+
+//     movie.image.data = fs.readFileSync(req.files.userPhoto.path);
+//     movie.image.contentType = 'image/jpeg';
+//     movie
+//         .save()
+//         .then(()=>{
+//             return res.status(201).json({
+//                 success: true,
+//                 id: movie._id,
+//                 message: 'Movie created!',
+//             })
+//         })
+//         .catch(error=>{
+//             return res.status(400).json({
+//                 error,
+//                 message: 'Movie not created'
+//             })
+//         })
+// }
+
+const createMovie = async(req, res, next)=> {
+    const obj = {
+        name: req.body.name,
+        desc: req.body.desc,
+        image: {
+            data: fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)),
+            contentType: 'image/jpeg'
+        }
     }
-
-    const movie = new Movie(body);
-
-    if (!movie){
-        return res.status(400).json({success: false, error: err});
-    }
-
-    movie.image.data = fs.readFileSync(req.files.userPhoto.path);
-    movie.image.contentType = 'image/jpeg';
-    movie
-        .save()
-        .then(()=>{
-            return res.status(201).json({
-                success: true,
-                id: movie._id,
-                message: 'Movie created!',
-            })
-        })
-        .catch(error=>{
+    Movie.create(obj, (err, item)=>{
+        if(err){
             return res.status(400).json({
                 error,
                 message: 'Movie not created'
             })
-        })
+        }
+        else{
+            return res.status(201).json({
+                success: true,
+                message: 'Movie created!',
+            })
+        }
+    })
 }
 
 const updateMovie = async(req, res)=>{
@@ -119,6 +146,7 @@ const getMovies = async (req, res)=>{
                 .json({success: false, error: 'Movie not found'})
         }
         return res.status(200).json({success: true, data: movies})
+        // return res.status(200).render('moviesPage',{movies:movies});
     }).catch(err=> console.log(err))
 }
 

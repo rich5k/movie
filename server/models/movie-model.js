@@ -4,10 +4,9 @@ const Schema = mongoose.Schema;
 const Movie = new Schema(
     {
         name : String,
-        description: String,
+        desc: String,
         image: {data: Buffer, contentType: String}
-    },
-    {timestamps: true},
-)
+    }
+);
 
-module.exports = mongoose.model('movies',Movie)
+module.exports = new mongoose.model('movies',Movie)
