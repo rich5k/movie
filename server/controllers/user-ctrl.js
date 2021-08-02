@@ -38,8 +38,9 @@ require('dotenv/config');
 const createUser = async(req, res, next)=> {
     const obj = {
         name: req.body.name,
-        desc: req.body.desc,
-        image: {
+        email: req.body.email,
+        password: req.body.password,
+        picture: {
             data: fs.readFileSync(path.join(__dirname + '/../profile-pics/' + req.file.filename)),
             contentType: 'image/jpeg'
         }
