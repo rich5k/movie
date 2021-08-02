@@ -1,38 +1,64 @@
 const User = require('../models/user-model');
+const fs = require('fs');
+const path = require('path')
+require('dotenv/config');
+// const createUser = (req,res)=>{
+//     const body = req.body;
 
-const createUser = (req,res)=>{
-    const body = req.body;
+//     if(!body){
+//         return res.status(400).json({
+//             success: false,
+//             error: 'You must provide a user',
+//         })
+//     }
 
-    if(!body){
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a user',
-        })
+//     const user = new User(body);
+
+//     if (!user){
+//         return res.status(400).json({success: false, error: err});
+//     }
+
+//     user
+//         .save()
+//         .then(()=>{
+//             return res.status(201).json({
+//                 success: true,
+//                 id: user._id,
+//                 message: 'User created!',
+//             })
+//         })
+//         .catch(error=>{
+//             return res.status(400).json({
+//                 error,
+//                 message: 'User not created'
+//             })
+//         })
+// }
+
+const createUser = async(req, res, next)=> {
+    const obj = {
+        name: req.body.name,
+        desc: req.body.desc,
+        image: {
+            data: fs.readFileSync(path.join(__dirname + '/../profile-pics/' + req.file.filename)),
+            contentType: 'image/jpeg'
+        }
     }
-
-    const user = new User(body);
-
-    if (!user){
-        return res.status(400).json({success: false, error: err});
-    }
-
-    user
-        .save()
-        .then(()=>{
-            return res.status(201).json({
-                success: true,
-                id: user._id,
-                message: 'User created!',
-            })
-        })
-        .catch(error=>{
+    User.create(obj, (err, item)=>{
+        if(err){
             return res.status(400).json({
-                error,
+                err,
                 message: 'User not created'
             })
-        })
+        }
+        else{
+            return res.status(201).json({
+                success: true,
+                message: 'User created!',
+            })
+        }
+    })
 }
-
 const updateUser = async(req, res)=>{
     const body = req.body;
 

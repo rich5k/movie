@@ -49,7 +49,7 @@ const createMovie = async(req, res, next)=> {
     Movie.create(obj, (err, item)=>{
         if(err){
             return res.status(400).json({
-                error,
+                err,
                 message: 'Movie not created'
             })
         }
