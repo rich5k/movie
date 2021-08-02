@@ -3,8 +3,18 @@ const express = require('express');
 const userCtrl = require('../controllers/user-ctrl');
 
 const router = express.Router();
+const multer= require('multer');
+const storage = multer.diskStorage({
+    destination : (req, file, cb)=> {
+        cb(null, 'profile-pics')
+    },
+    filename: (req,file,cb)=>{
+        cb(null, file.fieldname + '-'+ Date.now())
+    }
+});
 
-router.post('/user',userCtrl.createUser);
+const upload = multer({storage: storage});
+router.post('/user',upload.single('image'),userCtrl.createUser);
 router.put('/user/:id', userCtrl.updateUser);
 router.delete('/user/:id',userCtrl.deleteUser);
 router.get('/user/:id', userCtrl.getUserById);
