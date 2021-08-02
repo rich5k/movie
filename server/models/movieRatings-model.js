@@ -3,11 +3,10 @@ const Schema = mongoose.Schema;
 
 const MovieRating = new Schema(
     {
-        movieId : {type: mongoose.ObjectId},
-        rating: {type: Number},
-        review: {type: String},
-    },
-    {timestamps: true},
-)
+        movieId : mongoose.ObjectId,
+        rating: Number,
+        review: String,
+    }
+);
 
-module.exports = mongoose.model('movieratings',MovieRating)
+module.exports = new mongoose.model('movieratings',MovieRating)

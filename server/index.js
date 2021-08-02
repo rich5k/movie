@@ -3,9 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const fs = require('fs');
-const path = require('path')
-require('dotenv/config');
-const multer= require('multer');
+
+
 
 const db = require('./db');
 const movieRouter = require('./routes/movie-router');
