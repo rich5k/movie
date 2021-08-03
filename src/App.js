@@ -14,13 +14,13 @@ function App() {
       {/* <SignIn/> */}
       <Router>
           <Switch>
-          <Route path="/rate">
+          <Route path="/rate/:id">
                 <Rate />
             </Route> 
           <Route path="/signup">
                 <SignUp />
             </Route>
-          <Route path="/viewmore">
+          <Route path="/viewmore/:id">
                 <ViewMore />
             </Route>
           <Route path="/signin">
