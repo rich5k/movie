@@ -7,14 +7,14 @@ import './Add.css';
 const Add = () => {
 
     const [name, setName]= useState('');
-    const [descriptiion, setDescriptiion]= useState('');
+    const [desc, setDesc]= useState('');
     const [image, setImage]= useState('');
     const [isPending, setIsPending]=useState(false);
     const history = useHistory();
 
     const handleSubmit= (e)=>{
         e.preventDefault();
-        const movie ={name, descriptiion, image};
+        const movie ={name, desc, image};
         setIsPending(true);
         fetch('http://localhost:8000/blogs',{
             method: 'POST',
@@ -53,7 +53,7 @@ const Add = () => {
                         Description
                         </label>
                         <div className="mt-1">
-                            <textarea id="description" name="description" required value={descriptiion} onChange={(e)=> setDescriptiion(e.target.value)} rows="3" className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com"></textarea>
+                            <textarea id="description" name="description" required value={desc} onChange={(e)=> setDesc(e.target.value)} rows="3" className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com"></textarea>
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
                             Brief description of the movie. Get others excited to watch it.
