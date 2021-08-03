@@ -1,6 +1,12 @@
 import './ViewMore.css';
+import {useHistory} from "react-router-dom";
 import './tailwindcss/styles.css';
 const ViewMore = () => {
+    const history = useHistory();
+    const routeChange = ()=>{
+        let path = '/';
+        history.push(path);
+      }
     return ( 
         <div className="ViewMore">
             <body class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover vm2">
@@ -21,8 +27,9 @@ const ViewMore = () => {
                     <p class="pt-8 text-sm">Totally optional short description about yourself, what you do and so on.</p>
 
                     <div class="pt-12 pb-8">
-                        <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
-                        Get In Touch
+                        <button onClick={routeChange} class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path></svg>
+                        Go Back
                         </button> 
                     </div>
 
