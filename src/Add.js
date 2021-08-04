@@ -16,7 +16,7 @@ const Add = () => {
         e.preventDefault();
         const movie ={name, desc, image};
         setIsPending(true);
-        fetch('http://localhost:8000/blogs',{
+        fetch('http://localhost:3000/api/movie',{
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(movie)
@@ -53,7 +53,7 @@ const Add = () => {
                         Description
                         </label>
                         <div className="mt-1">
-                            <textarea id="description" name="description" required value={desc} onChange={(e)=> setDesc(e.target.value)} rows="3" className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com"></textarea>
+                            <textarea id="description" name="desc" required value={desc} onChange={(e)=> setDesc(e.target.value)} rows="3" className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com"></textarea>
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
                             Brief description of the movie. Get others excited to watch it.
