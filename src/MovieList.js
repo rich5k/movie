@@ -1,9 +1,7 @@
 import './tailwindcss/styles.css';
 import { useHistory} from "react-router-dom";
-const MovieList = (props) => {
-    const movies = props.movies;
-
-    console.log(props, movies);
+const MovieList = ({movies}) => {
+    // const d = Array.from(movies);
     const history = useHistory();
 
     const routeChange = ()=>{
@@ -15,9 +13,17 @@ const MovieList = (props) => {
       let path = '/rate/:id';
       history.push(path);
     }
+
+    const checkData=(name, desc, image)=>{
+        console.log("Name: "+ name);
+        console.log("Desc: "+ desc);
+        console.log("Image: "+ image);
+    }
+    console.log(movies);
     return ( 
         <div className="movie-list">
-            {movies.map((movie)=>(
+            {Object.keys(movies).map((movie)=>(
+                {checkData(movie.name,movie.desc,movie.image)}
                 <div class="flex-grow container mx-auto py-4 grid lg:grid-cols-3 sm:grid-cols-2">
                     <div class="content max-w-sm rounded overflow-hidden shadow-lg bg-white m-4 " key = {movie.id}>
                         <div class="content-overlay">
@@ -29,7 +35,7 @@ const MovieList = (props) => {
                             <h3 class="content-title   ">
                                 4.0/5.0</h3>
                             </div>
-                            <p class="content-text">{movie.desc}</p>
+                            <p class="content-text">This is a short description</p>
                             <button onClick={routeChange2} class="my-2 bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
                                     Rate
                                 </button>

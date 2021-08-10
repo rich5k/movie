@@ -5,7 +5,7 @@ const Movie = new Schema(
     {
         name : String,
         desc: String,
-        image: {data: Buffer, contentType: String}
+        image: String
     }
 );
 

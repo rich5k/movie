@@ -3,11 +3,21 @@ import Navbar from './Navbar';
 import {Link} from "react-router-dom";
 import './tailwindcss/styles.css';
 import MovieList from './MovieList';
-
+import { useState, useEffect } from 'react';
 import './Home.css';
 function Home() {
   
-    
+  const [movies, setMovies]= useState(null);
+  
+  useEffect(()=>{
+    fetch('http://localhost:3000/api/movies')
+    .then(res =>{
+      return res.json();
+    })
+    .then(data=>{
+      setMovies(data);
+    })
+  },[])
     return (
       <div className="Home">
         
@@ -22,7 +32,7 @@ function Home() {
 
           </div>
           
-          <MovieList/>
+          {movies && <MovieList movies ={movies} />}
           
           <Footer/>
         </div>
