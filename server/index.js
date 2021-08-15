@@ -1,9 +1,11 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const fs = require('fs');
+// const fs = require('fs');
 
+const {CLIENT_ORIGIN}= require('./config');
 
 
 const db = require('./db');
@@ -14,8 +16,14 @@ const userRouter = require('./routes/user-router');
 const app= express();
 const apiPort = 3000;
 
+
+
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cors());
+app.use(cors({
+    origin: CLIENT_ORIGIN
+
+}
+));
 app.use(bodyParser.json());
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
@@ -30,4 +38,4 @@ app.use('/api',movieRouter);
 app.use('/api',movieRatingRouter);
 app.use('/api',userRouter);
 
-app.listen(apiPort, ()=>console.log(`Server running on port ${apiPort}`));
+app.listen(process.env.PORT || apiPort, ()=>console.log(`Server running on port ${apiPort}`));

@@ -1,7 +1,14 @@
+require ('dotenv').config();
 const Movie = require('../models/movie-model');
-const fs = require('fs');
-const path = require('path')
-require('dotenv/config');
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+})
+// const fs = require('fs');
+// const path = require('path')
+// require('dotenv/config');
 // const createMovie = (req,res)=>{
 //     const body = req.body;
 
@@ -60,10 +67,17 @@ require('dotenv/config');
 // }
 
 const createMovie = async(req, res)=> {
+    const values = Object.values(req.files);
+    const promises = values.map(image =>cloudinary.uploader.uploader(image.path))
+
+    Promise
+        .all(promises)
+        .then(results =>res.json(results))
+
     const obj = {
         name: req.body.name,
         desc: req.body.desc,
-        image: req.body.image
+        image: req.body.image.path
     }
     Movie.create(obj, (err, item)=>{
         if(err){
