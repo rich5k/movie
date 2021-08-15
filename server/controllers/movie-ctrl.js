@@ -37,14 +37,33 @@ require('dotenv/config');
 //         })
 // }
 
-const createMovie = async(req, res, next)=> {
+// const createMovie = async(req, res, next)=> {
+//     const obj = {
+//         name: req.body.name,
+//         desc: req.body.desc,
+//         image: req.body.image
+//     }
+//     Movie.create(obj, (err, item)=>{
+//         if(err){
+//             return res.status(400).json({
+//                 err,
+//                 message: 'Movie not created'
+//             })
+//         }
+//         else{
+//             return res.status(201).json({
+//                 success: true,
+//                 message: 'Movie created!',
+//             })
+//         }
+//     })
+// }
+
+const createMovie = async(req, res)=> {
     const obj = {
         name: req.body.name,
         desc: req.body.desc,
-        image: {
-            data: fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)),
-            contentType: 'image/jpeg'
-        }
+        image: req.body.image
     }
     Movie.create(obj, (err, item)=>{
         if(err){
