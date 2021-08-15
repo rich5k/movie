@@ -25,7 +25,7 @@ const MovieList = ({movies}) => {
                     <div class="content max-w-sm rounded overflow-hidden shadow-lg bg-white m-4 " key = {movie.id}>
                         <div class="content-overlay">
                         </div>
-                        <img class="w-full content-image" src={movie.image.secure_url} alt={movie.name}/>
+                        <img class="w-full content-image" src={movie.image.secure_url} alt={movie.name} onError={()=> movies.onError(movie.public_id)}/>
                         <div class="content-details fadeIn-bottom">
                             <div class="flex items-center justify-center">
                             <svg class="mx-4 w-4 h-4 fill-current text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
