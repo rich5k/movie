@@ -4,13 +4,17 @@ import {Link} from "react-router-dom";
 import './tailwindcss/styles.css';
 import MovieList from './MovieList';
 import { useState, useEffect } from 'react';
+import {API_URL} from './config';
 import './Home.css';
 function Home() {
   
   const [movies, setMovies]= useState(null);
   
   useEffect(()=>{
-    fetch('http://localhost:3000/api/movies')
+    fetch(`${API_URL}/api/movies`,{
+      method: "GET",
+      mode:'cors'
+    })
     .then(res =>{
       return res.json();
     })

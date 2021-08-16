@@ -8,12 +8,12 @@ const Add = () => {
 
     const [name, setName]= useState('');
     const [desc, setDesc]= useState('');
-    const [image, setImage]= useState('');
+    const [image, setImage]= useState(null);
     const [isPending, setIsPending]=useState(false);
     const history = useHistory();
 
     const handleSubmit= (e)=>{
-        e.preventDefault();
+        // e.preventDefault();
         const movie ={name, desc, image};
         setIsPending(true);
         fetch('http://localhost:3000/api/movie',{
@@ -22,6 +22,7 @@ const Add = () => {
             body: JSON.stringify(movie)
         }).then(()=>{
             console.log('new movie added')
+            alert('new movie added')
             setIsPending(false);
             history.push('/');
         })
@@ -74,7 +75,7 @@ const Add = () => {
                         <div className="flex text-sm text-gray-600">
                             <label for="image" className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                             <span>Upload a file</span>
-                            <input id="image" name="image" required value={image} onChange={(e)=> setImage(e.target.value)} type="file" className="sr-only" />
+                            <input id="image" name="image" required value={image} onChange={(e)=> setImage(e.target.files[0])} type="file" className="sr-only" />
                             </label>
                             <p className="pl-1">or drag and drop</p>
                         </div>

@@ -73,7 +73,7 @@ const createMovie = async(req, res)=> {
     Promise
         .all(promises)
         .then(results =>res.json(results))
-
+        .catch((err)=>res.status(400).json(err))
     const obj = {
         name: req.body.name,
         desc: req.body.desc,

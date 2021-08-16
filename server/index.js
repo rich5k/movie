@@ -19,11 +19,15 @@ const apiPort = 3000;
 
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cors({
-    origin: CLIENT_ORIGIN
 
-}
-));
+// have to find a way to use the cors origin without getting errors
+// app.use(cors({
+//     origin: CLIENT_ORIGIN
+
+// }
+// ));
+
+app.use(cors());
 app.use(bodyParser.json());
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
