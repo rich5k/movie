@@ -4,29 +4,46 @@ import { useState } from "react";
 import {useHistory} from 'react-router-dom';
 import './tailwindcss/styles.css';
 import './Add.css';
+import axios from 'axios';
+import {API_URL} from './config';
 const Add = () => {
 
     const [name, setName]= useState('');
     const [desc, setDesc]= useState('');
     const [image, setImage]= useState(null);
-    const [isPending, setIsPending]=useState(false);
+    // const [isPending, setIsPending]=useState(false);
     const history = useHistory();
 
-    const handleSubmit= (e)=>{
-        // e.preventDefault();
-        const movie ={name, desc, image};
-        setIsPending(true);
-        fetch('http://localhost:3000/api/movie',{
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(movie)
-        }).then(()=>{
-            console.log('new movie added')
-            alert('new movie added')
-            setIsPending(false);
-            history.push('/');
-        })
+    // const handleSubmit= (e)=>{
+    //     // e.preventDefault();
+    //     const movie ={name, desc, image};
+    //     setIsPending(true);
+    //     fetch(`${API_URL}/api/movie`,{
+    //         method: 'POST',
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify(movie)
+    //     }).then(()=>{
+    //         console.log('new movie added')
+    //         alert('new movie added')
+    //         setIsPending(false);
+    //         history.push('/');
+    //     })
 
+    // }
+
+    const submitForm= ()=>{
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('desc', desc);
+        formData.append('image', image);
+
+        axios
+            .post(`${API_URL}/api/movie`, formData)
+            .then((res)=>{
+                alert('new movie added');
+                history.push('/');
+            })
+            .catch((err)=> alert('Movie error'));
     }
     return ( 
         <div className="Add">
@@ -34,7 +51,8 @@ const Add = () => {
             <Navbar></Navbar>
             
             <div className="min-h-screen flex items-center justify-center">
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}> */}
+            <form >
                 <div className="shadow sm:rounded-md bg-white sm:overflow-hidden">
                     <div className="px-4 py-5 space-y-6 sm:p-6">
                         <div className="">
@@ -67,6 +85,7 @@ const Add = () => {
                     <label className="block text-sm font-medium text-gray-700">
                         Cover photo
                     </label>
+                    <input id="image" name="image" required  onChange={(e)=> setImage(e.target.files[0])} type="file" className="sr-only" />
                     <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div className="space-y-1 text-center">
                         <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -87,7 +106,7 @@ const Add = () => {
                     </div>
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <button type="submit" onClick={submitForm} className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Save
                     </button>
                 </div>
