@@ -1,3 +1,4 @@
+import React from 'react';
 import './tailwindcss/styles.css';
 import { useHistory} from "react-router-dom";
 const MovieList = ({movies}) => {

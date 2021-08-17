@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import {Link} from "react-router-dom";
 import './tailwindcss/styles.css';
 import MovieList from './MovieList';
-import { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 import {API_URL} from './config';
 import './Home.css';
 function Home() {

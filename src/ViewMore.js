@@ -1,3 +1,4 @@
+import React from 'react';
 import './ViewMore.css';
 import {useHistory} from "react-router-dom";
 import './tailwindcss/styles.css';

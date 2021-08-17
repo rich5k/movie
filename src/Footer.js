@@ -1,3 +1,4 @@
+import React from 'react';
 import './tailwindcss/styles.css';
 const Footer = () => {
     return ( 

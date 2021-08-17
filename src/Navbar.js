@@ -1,4 +1,5 @@
 import './tailwindcss/styles.css';
+import React from 'react';
 import {Link} from "react-router-dom";
 import img from './img/john.jpg';
 function Navbar() {

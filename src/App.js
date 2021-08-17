@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './Home';
 import Add from './Add';
+import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SignIn from './SignIn';
 import ViewMore from './ViewMore';
