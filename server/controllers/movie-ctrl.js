@@ -67,13 +67,14 @@ cloudinary.config({
 // }
 
 const createMovie = async(req, res)=> {
-    const values = Object.values(req.files);
-    const promises = values.map(image =>cloudinary.uploader.uploader(image.path))
+    console.log('new movie was sent to the backend')
+    // const values = Object.values(req.files);
+    // const promises = values.map(image =>cloudinary.uploader.uploader(image.path))
 
-    Promise
-        .all(promises)
-        .then(results =>res.json(results))
-        .catch((err)=>res.status(400).json(err))
+    // Promise
+    //     .all(promises)
+    //     .then(results =>res.json(results))
+    //     .catch((err)=>res.status(400).json(err))
     const obj = {
         name: req.body.name,
         desc: req.body.desc,

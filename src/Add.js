@@ -19,45 +19,47 @@ const Add = () => {
         console.log(image);
     }
 
-    const handleSubmit= (e)=>{
-        // e.preventDefault();
-        const movie ={name, desc, image};
-        setIsPending(true);
-        fetch(`${API_URL}/api/movie`,{
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(movie)
-        }).then(()=>{
-            console.log('new movie added')
-            alert('new movie added')
-            setIsPending(false);
-            history.push('/');
-        })
+    // const handleSubmit= (e)=>{
+    //     // e.preventDefault();
+    //     alert('form was submitted');
+    //     const movie ={name, desc, image};
+    //     setIsPending(true);
+    //     fetch(`${API_URL}/api/movie`,{
+    //         method: 'POST',
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify(movie)
+    //     }).then(()=>{
+    //         console.log('new movie added')
+    //         alert('new movie added')
+    //         setIsPending(false);
+    //         history.push('/');
+    //     })
+        
 
-    }
-
-    // const submitForm= ()=>{
-    //     const formData = new FormData();
-    //     formData.append('name', name);
-    //     formData.append('desc', desc);
-    //     formData.append('image', image);
-
-    //     axios
-    //         .post(`${API_URL}/api/movie`, formData)
-    //         .then((res)=>{
-    //             alert('new movie added');
-    //             history.push('/');
-    //         })
-    //         .catch((err)=> alert('Movie error'));
     // }
+
+    const submitForm= ()=>{
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('desc', desc);
+        formData.append('image', image);
+
+        axios
+            .post(`${API_URL}/api/movie`, formData)
+            .then((res)=>{
+                alert('new movie added');
+                history.push('/');
+            })
+            .catch((err)=> alert('Movie error'));
+    }
     return ( 
         <div className="Add">
             <div className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg2 bg-cover">
             <Navbar></Navbar>
             
             <div className="min-h-screen flex items-center justify-center">
-            <form onSubmit={handleSubmit}>
-            {/* <form > */}
+            {/* <form onSubmit={handleSubmit}> */}
+            <form >
                 <div className="shadow sm:rounded-md bg-white sm:overflow-hidden">
                     <div className="px-4 py-5 space-y-6 sm:p-6">
                         <div className="">
@@ -110,7 +112,7 @@ const Add = () => {
                     </div>
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button type="submit"  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <button type="submit" onClick={submitForm}  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Save
                     </button>
                 </div>
