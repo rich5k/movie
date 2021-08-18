@@ -50,7 +50,9 @@ const Add = () => {
                 alert('new movie added');
                 history.push('/');
             })
-            .catch((err)=> alert('Movie error'));
+            .catch((err)=> setTimeout(()=>{
+                alert('Movie error')
+            },5000));
     }
     return ( 
         <div className="Add">
