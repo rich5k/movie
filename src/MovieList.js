@@ -22,7 +22,7 @@ const MovieList = ({movies}) => {
         <div className="movie-list">
             {movies.data.map((movie)=>(
                 // {checkData(movie.name,movie.desc,movie.image)}
-                <div class="flex-grow container mx-auto py-4 grid lg:grid-cols-3 sm:grid-cols-2">
+                
                     <div class="content max-w-sm rounded overflow-hidden shadow-lg bg-white m-4 " key = {movie.id}>
                         <div class="content-overlay">
                         </div>
@@ -48,7 +48,7 @@ const MovieList = ({movies}) => {
                             
                         </div>
                     </div>
-                </div>
+                
             ))}
         </div>
      );

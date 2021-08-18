@@ -35,9 +35,9 @@ function Home() {
             </Link>
 
           </div>
-          
-          {movies && <MovieList movies ={movies} />}
-          
+          <div class="flex-grow container mx-auto py-4 grid lg:grid-cols-3 sm:grid-cols-2">
+            {movies && <MovieList movies ={movies} />}
+          </div>
           <Footer/>
         </div>
       </div>
