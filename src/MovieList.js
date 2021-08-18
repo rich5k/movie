@@ -6,9 +6,11 @@ const MovieList = ({movies}) => {
     const movies1= movies.data.data;
     const history = useHistory();
 
-    const routeChange = ()=>{
-      let path = '/viewmore/:id';
-      history.push(path);
+    const routeChange = (id)=>{
+      let path = '/viewmore';
+      let param= id;
+      history.push(`${path}/${param}`);
+    console.log(id);
     }
 
     const routeChange2 = ()=>{
@@ -23,7 +25,7 @@ const MovieList = ({movies}) => {
             {movies.data.map((movie)=>(
                 // {checkData(movie.name,movie.desc,movie.image)}
                 
-                    <div class="content max-w-sm rounded overflow-hidden shadow-lg bg-white m-4 " key = {movie.id}>
+                    <div class="content max-w-sm rounded overflow-hidden shadow-lg bg-white m-4 " key = {movie._id}>
                         <div class="content-overlay">
                         </div>
                         <img class="w-full content-image" src={'/uploads/'+movie.image} alt={movie.name} />
@@ -39,7 +41,7 @@ const MovieList = ({movies}) => {
                                 </button>
                             
                             <br></br>
-                            <button onClick={routeChange} class=" my-4 bg-transparent hover:bg-green-400 text-green-600 font-semibold hover:text-white py-2 px-4 border border-green-400 hover:border-transparent rounded">
+                            <button onClick={movie._id&& routeChange(movie._id)} class=" my-4 bg-transparent hover:bg-green-400 text-green-600 font-semibold hover:text-white py-2 px-4 border border-green-400 hover:border-transparent rounded">
                                 View More
                             </button>
                         </div>
