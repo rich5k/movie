@@ -1,14 +1,31 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import './ViewMore.css';
+import {API_URL} from './config';
 import {useHistory, useParams} from "react-router-dom";
 import './tailwindcss/styles.css';
 const ViewMore = () => {
     const {id} = useParams();
+    const [movies, setMovies]= useState(null);
+  
+    useEffect(()=>{
+        fetch(`http://localhost:3000/api/movies`,{
+        method: "GET",
+        mode:'cors'
+        })
+        .then(res =>{
+            // console.log(res.json)
+        return res.json();
+        })
+        .then(data=>{
+        setMovies(data);
+        })
+    },[])
     const history = useHistory();
     const routeChange = ()=>{
         let path = '/';
         history.push(path);
       }
+      console.log(movies);
     return ( 
         <div className="ViewMore">
             <body class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover vm2">
@@ -21,12 +38,15 @@ const ViewMore = () => {
                 <div class="p-4 md:p-12 text-center lg:text-left">
                     {/* <!-- Image for mobile view--> */}
                     <div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center vm1"></div>
-                    
-                    <h1 class="text-3xl font-bold pt-8 lg:pt-0">Your Name- {id}</h1>
-                    <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
-                    <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start"><svg class="w-4 h-4 fill-current text-yellow-400 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg> 4.0/5.0</p>
-                    <p class="pt-2 text-black text-xs lg:text-sm flex items-center justify-center lg:justify-start"><svg class="w-6 h-6 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg> Reviews:</p>
-                    <p class="pt-8 text-sm">Totally optional short description about yourself, what you do and so on.</p>
+                    {/* {movies.data.map((movie)=>( */}
+                        <div>
+                        {/* <h1 class="text-3xl font-bold pt-8 lg:pt-0">{movie.name}- {id}</h1> */}
+                        <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
+                        <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start"><svg class="w-4 h-4 fill-current text-yellow-400 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg> 4.0/5.0</p>
+                        <p class="pt-2 text-black text-xs lg:text-sm flex items-center justify-center lg:justify-start"><svg class="w-6 h-6 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg> Reviews:</p>
+                        {/* <p class="pt-8 text-sm">{movie.desc}</p> */}
+                        </div>
+                    {/* ))} */}
 
                     <div class="pt-12 pb-8">
                         <button onClick={routeChange} class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">

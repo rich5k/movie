@@ -7,10 +7,11 @@ const MovieList = ({movies}) => {
     const history = useHistory();
 
     const routeChange = (id)=>{
+        // id.preventDefault();
       let path = '/viewmore';
       let param= id;
       history.push(`${path}/${param}`);
-    console.log(id);
+    console.log('ID: '+id);
     }
 
     const routeChange2 = ()=>{
@@ -41,7 +42,7 @@ const MovieList = ({movies}) => {
                                 </button>
                             
                             <br></br>
-                            <button onClick={movie._id&& routeChange(movie._id)} class=" my-4 bg-transparent hover:bg-green-400 text-green-600 font-semibold hover:text-white py-2 px-4 border border-green-400 hover:border-transparent rounded">
+                            <button onClick={ routeChange.bind(movie._id)} class=" my-4 bg-transparent hover:bg-green-400 text-green-600 font-semibold hover:text-white py-2 px-4 border border-green-400 hover:border-transparent rounded">
                                 View More
                             </button>
                         </div>
