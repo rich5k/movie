@@ -36,6 +36,7 @@ const Rate = () => {
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                         Rate and Review
                     </h2>
+                    <input type="hidden" value={id}/>
                     <div className="px-4 py-5 space-y-6 sm:p-6">
                         <div className="flex justify-center items-center">
                         <div class="flex items-center mt-2 mb-4">
@@ -48,11 +49,11 @@ const Rate = () => {
                         </div>
 
                     <div>
-                        <label for="description" className="block text-bold font-medium text-gray-700">
+                        <label for="review" className="block text-bold font-medium text-gray-700">
                         Review
                         </label>
                         <div className="mt-1">
-                            <textarea id="description" name="description" rows="3" className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="This movie was great!!!"></textarea>
+                            <textarea id="review" name="review" rows="3" className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="This movie was great!!!"></textarea>
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
                             Brief review of {movies.data.name}. Let others know what you think.
