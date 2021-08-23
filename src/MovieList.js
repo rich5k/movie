@@ -14,9 +14,11 @@ const MovieList = ({movies}) => {
     console.log('ID: '+movie);
     }
 
-    const routeChange2 = ()=>{
-      let path = '/rate/:id';
-      history.push(path);
+    const routeChange2 = (movie,id)=>{
+        let path = '/rate';
+        let param= movie;
+        history.push(`${path}/${param}`);
+      console.log('ID: '+movie);
     }
 
     
@@ -37,7 +39,7 @@ const MovieList = ({movies}) => {
                                 4.0/5.0</h3>
                             </div>
                             <p class="content-text">{movie.desc}</p>
-                            <button onClick={routeChange2} class="my-2 bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
+                            <button onClick={routeChange2.bind(null,movie._id)} class="my-2 bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
                                     Rate
                                 </button>
                             

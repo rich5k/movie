@@ -1,9 +1,30 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import './tailwindcss/styles.css';
 import './Add.css';
+import {useParams} from "react-router-dom";
 const Rate = () => {
+    const {id} = useParams();
+    const [movies, setMovies]= useState(null);
+    useEffect(()=>{
+        if(!movies){
+            fetch(`http://localhost:3000/api/movie/`+id,{
+            method: "GET",
+            mode:'cors'
+            })
+            .then(res =>{
+                // console.log(res.json)
+            return res.json();
+            })
+            .then(data=>{
+            setMovies(data);
+            // console.log(movies);
+            })
+
+        }
+    },[id, movies])
+    if(!movies) return 'Movie Loading...';
     return ( 
         <div className="Rate">
             <div className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg3 bg-cover">
@@ -34,7 +55,7 @@ const Rate = () => {
                             <textarea id="description" name="description" rows="3" className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="This movie was great!!!"></textarea>
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
-                            Brief review of the movie. Let others know what you think.
+                            Brief review of {movies.data.name}. Let others know what you think.
                         </p>
                     </div>
 
@@ -54,7 +75,7 @@ const Rate = () => {
             {/* <!--Img Col--> */}
             <div class="w-full lg:w-2/5">
                 {/* <!-- Big profile image for side bar (desktop) --> */}
-                <img src="https://source.unsplash.com/MP0IUfwrn0A" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"/>
+                <img src={'/uploads/'+movies.data.image} alt={movies.data.name} class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"/>
                 {/* <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A --> */}
                 
             </div>

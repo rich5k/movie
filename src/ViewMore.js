@@ -1,4 +1,4 @@
-import React,{ useState, useEffect, Suspense } from 'react';
+import React,{ useState, useEffect } from 'react';
 import './ViewMore.css';
 import {API_URL} from './config';
 import { useHistory } from "react-router";
