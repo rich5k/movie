@@ -90,7 +90,7 @@ const SignUp = () => {
                         </div>
                     </div>
                     <button
-                        type="submit"
+                        type="submit"  onClick={submitForm}
                         class="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-700 focus:outline-none my-1"
                     >Create Account</button>
 
