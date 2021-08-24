@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import './tailwindcss/styles.css';
-import './Add.css';
+import './Rate.css';
 import {useParams} from "react-router-dom";
 const Rate = () => {
     const {id} = useParams();
@@ -40,11 +40,20 @@ const Rate = () => {
                     <div className="px-4 py-5 space-y-6 sm:p-6">
                         <div className="flex justify-center items-center">
                         <div class="flex items-center mt-2 mb-4">
-                            <svg class="mx-1 w-4 h-4 fill-current text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                            <svg class="mx-1 w-4 h-4 fill-current text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                            <svg class="mx-1 w-4 h-4 fill-current text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                            <svg class="mx-1 w-4 h-4 fill-current text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                            <svg class="mx-1 w-4 h-4 fill-current text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                            <ul className="rate-area">
+                                
+                                <input type = "radio" id= "5-star" name="rating" value="5"/>
+                                <label for= "5-star">5 stars</label>
+                                <input type = "radio" id= "4-star" name="rating" value="4"/>
+                                <label for= "4-star">4 stars</label>
+                                <input type = "radio" id= "3-star" name="rating" value="3"/>
+                                <label for= "3-star">3 stars</label>
+                                <input type = "radio" id= "2-star" name="rating" value="2"/>
+                                <label for= "2-star">2 stars</label>
+                                <input type = "radio" id= "1-star" name="rating" value="1"/>
+                                <label for= "1-star">1 star</label>
+                                
+                            </ul>
                         </div>
                         </div>
 
