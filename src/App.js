@@ -9,7 +9,7 @@ import SignUp from './SignUp';
 import Rate from './Rate';
 function App() {
   //connect to mongodb
-  const dbURI= 'mongodb+srv://netninja:test1234@nodetuts.4xoyw.mongodb.net/movierater?retryWrites=true&w=majority';
+  // const dbURI= 'mongodb+srv://netninja:test1234@nodetuts.4xoyw.mongodb.net/movierater?retryWrites=true&w=majority';
   return (
     <div className="App">
       {/* <SignIn/> */}
@@ -20,6 +20,9 @@ function App() {
             </Route> 
           <Route path="/signup">
                 <SignUp />
+            </Route>
+            <Route path="/login">
+                <SignIn />
             </Route>
           <Route path="/viewmore/:id">
                 <ViewMore />
