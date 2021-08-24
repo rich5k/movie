@@ -1,7 +1,7 @@
 const User = require('../models/user-model');
-const fs = require('fs');
+const bcrypt = require('bcryptjs');
 const path = require('path')
-require('dotenv/config');
+require ('dotenv').config();
 // const createUser = (req,res)=>{
 //     const body = req.body;
 
@@ -35,15 +35,44 @@ require('dotenv/config');
 //         })
 // }
 
-const createUser = async(req, res, next)=> {
+// const createUser = async(req, res, next)=> {
+//     const obj = {
+//         name: req.body.name,
+//         email: req.body.email,
+//         password: req.body.password,
+//         picture: {
+//             data: fs.readFileSync(path.join(__dirname + '/../profile-pics/' + req.file.filename)),
+//             contentType: 'image/jpeg'
+//         }
+//     }
+//     User.create(obj, (err, item)=>{
+//         if(err){
+//             return res.status(400).json({
+//                 err,
+//                 message: 'User not created'
+//             })
+//         }
+//         else{
+//             return res.status(201).json({
+//                 success: true,
+//                 message: 'User created!',
+//             })
+//         }
+//     })
+// }
+
+const createUser = async(req, res)=> {
+    console.log('new user was sent to the backend')
+    console.log(req.file);
+    
+    console.log('Image name:'+req.file.filename);
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(req.body.password, salt);
     const obj = {
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
-        picture: {
-            data: fs.readFileSync(path.join(__dirname + '/../profile-pics/' + req.file.filename)),
-            contentType: 'image/jpeg'
-        }
+        password: hash,
+        image: req.file.filename
     }
     User.create(obj, (err, item)=>{
         if(err){
@@ -60,6 +89,8 @@ const createUser = async(req, res, next)=> {
         }
     })
 }
+
+
 const updateUser = async(req, res)=>{
     const body = req.body;
 
