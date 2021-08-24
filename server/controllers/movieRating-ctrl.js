@@ -1,36 +1,64 @@
 const MovieRating = require('../models/movieRatings-model');
 
+// const createMovieRating = (req,res)=>{
+//     console.log('new movie rating was sent to the backend')
+    // const body = req.body;
+
+    // if(!body){
+    //     return res.status(400).json({
+    //         success: false,
+    //         error: 'You must provide a movie rating',
+    //     })
+    // }
+
+    // const movieRating = new MovieRating(body);
+
+    // if (!movieRating){
+    //     return res.status(400).json({success: false, error: 'unable to create movie rating object'});
+    // }
+
+    // movieRating
+    //     .save()
+    //     .then(()=>{
+    //         return res.status(201).json({
+    //             success: true,
+    //             id: movieRating._id,
+    //             message: 'Movie rating created!',
+    //         })
+    //     })
+    //     .catch(error=>{
+    //         return res.status(400).json({
+    //             error,
+    //             message: 'Movie rating not created'
+    //         })
+    //     })
+
+// }
+
 const createMovieRating = (req,res)=>{
-    const body = req.body;
-
-    if(!body){
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a movie rating',
-        })
+    console.log('new movie rating was sent to the backend')
+    const obj = {
+        movieId: req.body.id,
+        rating: req.body.rating,
+        review: req.body.review
     }
-
-    const movieRating = new MovieRating(body);
-
-    if (!movieRating){
-        return res.status(400).json({success: false, error: 'unable to create movie rating object'});
-    }
-
-    movieRating
-        .save()
-        .then(()=>{
-            return res.status(201).json({
-                success: true,
-                id: movieRating._id,
-                message: 'Movie rating created!',
-            })
-        })
-        .catch(error=>{
+    console.log('Id:', req.body.id);
+    console.log('Rating:', req.body.rating);
+    console.log('Review:', req.body.review);
+    MovieRating.create(obj, (err, item)=>{
+        if(err){
             return res.status(400).json({
-                error,
+                err,
                 message: 'Movie rating not created'
             })
-        })
+        }
+        else{
+            return res.status(201).json({
+                success: true,
+                message: 'Movie rating created!',
+            })
+        }
+    })
 }
 
 const updateMovieRating = async(req, res)=>{
