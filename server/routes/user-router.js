@@ -6,10 +6,10 @@ const router = express.Router();
 const multer= require('multer');
 const storage = multer.diskStorage({
     destination : (req, file, cb)=> {
-        cb(null, 'profile-pics')
+        cb(null, '../public/profile-pics')
     },
     filename: (req,file,cb)=>{
-        cb(null, file.fieldname + '-'+ Date.now())
+        cb(null, file.originalname)
     }
 });
 
