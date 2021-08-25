@@ -18,6 +18,7 @@ router.post('/user',upload.single('image'),userCtrl.createUser);
 router.put('/user/:id', userCtrl.updateUser);
 router.delete('/user/:id',userCtrl.deleteUser);
 router.get('/user/:id', userCtrl.getUserById);
+router.post('/user/email', userCtrl.getUserByEmail);
 router.get('/users', userCtrl.getUsers);
 
 module.exports = router;
