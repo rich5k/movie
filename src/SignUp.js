@@ -7,6 +7,7 @@ const SignUp = () => {
     const [name, setName]= useState('');
     const [email, setEmail]= useState('');
     const [password, setPassword]= useState('');
+    const [cpassword, setCpassword]= useState('');
     const [image, setImage]= useState(null);
     const history = useHistory();
     const handleFiles = (e)=> {
@@ -17,6 +18,7 @@ const SignUp = () => {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('email', email);
+        formData.append('password', password);
         formData.append('image', image);
 
         axios
@@ -62,11 +64,14 @@ const SignUp = () => {
                         name="password"
                         placeholder="Password" 
                         required value={password} onChange={(e)=> setPassword(e.target.value)}/>
+                        <div className="text-red-600">Test psswd error</div>
                     <input 
                         type="password"
                         class="block border border-grey-light w-full p-3 rounded mb-4"
                         name="confirm_password"
-                        placeholder="Confirm Password" />
+                        placeholder="Confirm Password" 
+                        required value={cpassword} onChange={(e)=> setCpassword(e.target.value)}/>
+                        <div className="text-red-600">Test confirm psswd error</div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
                             Profile Pic
