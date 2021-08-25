@@ -175,7 +175,11 @@ const getUserByEmail = async (req, res)=>{
                 .status(404)
                 .json({success: false, error: 'User not found'})
         }
-        return res.status(200).json({success: true, data: user})
+        const validUser = res.status(200).json({success: true, data: user})
+        if(bcrypt.compareSync(req.body.password,validUser.data.password))
+            return true;
+        else
+            return false;
     }).catch(err=> console.log(err))
 }
 
