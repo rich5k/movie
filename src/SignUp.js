@@ -14,6 +14,13 @@ const SignUp = () => {
         setImage(e.target.files[0])
         console.log(image);
     }
+    if(typeof password !== '' && typeof cpassword !==''){
+        if(password != cpassword){
+            console.log("Passwords don't match");
+        }
+        else 
+            console.log('Passwords match');
+    }
     const submitForm= ()=>{
         const formData = new FormData();
         formData.append('name', name);
