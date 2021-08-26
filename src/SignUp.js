@@ -22,22 +22,31 @@ const SignUp = () => {
         else 
             passError= '';
     }
-    const submitForm= ()=>{
+    const submitForm= (e)=>{
+        e.preventDefault();
         const formData = new FormData();
         formData.append('name', name);
         formData.append('email', email);
         formData.append('password', password);
         formData.append('image', image);
 
-        axios
-            .post(`${API_URL}/api/user`, formData)
-            .then((res)=>{
-                alert('new user added');
-                history.push('/');
-            })
-            .catch((err)=> setTimeout(()=>{
-                alert('user error')
-            },5000));
+        // axios
+        //     .post(`${API_URL}/api/user`, formData)
+        //     .then((res)=>{
+        //         alert('new user added');
+        //         history.push('/');
+        //     })
+        //     .catch((err)=> setTimeout(()=>{
+        //         alert('user error')
+        //     },5000));
+        try{
+            const response =axios.post(`${API_URL}/api/user`, formData);
+            console.log('Returned data:',response);
+            history.push('/login');
+        }
+        catch(e){
+            console.log(`Axios request failed: ${e}`)
+        }
     }
     return ( 
         <div className="SignUp">
