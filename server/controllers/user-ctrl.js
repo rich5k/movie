@@ -175,11 +175,20 @@ const getUserByEmail = async (req, res)=>{
                 .status(404)
                 .json({success: false, error: 'User not found'})
         }
-        const validUser = res.status(200).json({success: true, data: user})
-        if(bcrypt.compareSync(req.body.password,validUser.data.password))
-            return true;
+        // const validUser = res.status(200).json({success: true, data: user})
+        // console.log(user);
+        // return res.status(200).json({success: true, data: user});
+        // const validUser = res.json();
+        if(bcrypt.compareSync(req.body.password,user.password)){
+            // return res.redirect('/');
+            console.log('valid user')
+            return res.status(200).json({success: true, data: user});
+        }
         else
-            return false;
+            req.session.error = 'Incorrect username or password';
+            res.redirect('/login');
+            res.render('login', {error: req.session.error});
+            delete res.session.error;
     }).catch(err=> console.log(err))
 }
 
