@@ -14,12 +14,13 @@ const SignUp = () => {
         setImage(e.target.files[0])
         console.log(image);
     }
+    var passError=';'
     if(typeof password !== '' && typeof cpassword !==''){
         if(password != cpassword){
-            console.log("Passwords don't match");
+            passError="Passwords don't match";
         }
         else 
-            console.log('Passwords match');
+            passError= '';
     }
     const submitForm= ()=>{
         const formData = new FormData();
@@ -71,14 +72,14 @@ const SignUp = () => {
                         name="password"
                         placeholder="Password" 
                         required value={password} onChange={(e)=> setPassword(e.target.value)}/>
-                        <div className="text-red-600">Test psswd error</div>
+                        <div className="text-red-600">{passError}</div>
                     <input 
                         type="password"
                         class="block border border-grey-light w-full p-3 rounded mb-4"
                         name="confirm_password"
                         placeholder="Confirm Password" 
                         required value={cpassword} onChange={(e)=> setCpassword(e.target.value)}/>
-                        <div className="text-red-600">Test confirm psswd error</div>
+                        <div className="text-red-600">{passError}</div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
                             Profile Pic
