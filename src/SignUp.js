@@ -6,17 +6,17 @@ import {API_URL} from './config';
 const SignUp = () => {
     const [name, setName]= useState('');
     const [email, setEmail]= useState('');
-    const [password, setPassword]= useState('');
-    const [cpassword, setCpassword]= useState('');
+    const [password, setPassword]= useState(undefined);
+    const [cpassword, setCpassword]= useState(undefined);
     const [image, setImage]= useState(null);
     const history = useHistory();
     const handleFiles = (e)=> {
         setImage(e.target.files[0])
         console.log(image);
     }
-    var passError=';'
-    if(typeof password !== '' && typeof cpassword !==''){
-        if(password != cpassword){
+    var passError='';
+    if(typeof password !== 'undefined' && typeof cpassword !=='undefined'){
+        if(password !== cpassword){
             passError="Passwords don't match";
         }
         else 
