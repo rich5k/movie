@@ -29,7 +29,8 @@ const Rate = () => {
 
         }
     },[id, movies])
-    const submitForm= ()=>{
+    const submitForm= (e)=>{
+        e.preventDefault();
         const formData = new FormData();
         formData.append('id', id);
         formData.append('rating', rating);

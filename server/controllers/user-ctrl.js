@@ -165,6 +165,9 @@ const getUserById = async (req, res)=>{
 }
 
 const getUserByEmail = async (req, res)=>{
+    console.log('login details came to backend');
+    console.log('Login email: '+req.body);
+    console.log('Login password: '+req.body.password);
     await User.findOne({email: req.body.email}, (err,user)=>{
         if(err){
             return res.status(400).json({success: false, error: err})
@@ -179,6 +182,7 @@ const getUserByEmail = async (req, res)=>{
         // console.log(user);
         // return res.status(200).json({success: true, data: user});
         // const validUser = res.json();
+        console.log('password stored in db: '+user.password);
         if(bcrypt.compareSync(req.body.password,user.password)){
             // return res.redirect('/');
             console.log('valid user')
