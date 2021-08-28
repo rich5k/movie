@@ -7,7 +7,7 @@ import axios from 'axios';
 import {API_URL} from './config';
 import {useHistory,useParams} from "react-router-dom";
 const Rate = () => {
-    const {id} = useParams();
+    const {id} = useParams('');
     const [movies, setMovies]= useState(null);
     const [rating, setRating]= useState(0);
     const [review, setReview]= useState('');
@@ -36,15 +36,24 @@ const Rate = () => {
         formData.append('rating', rating);
         formData.append('review', review);
 
-        axios
-            .post(`${API_URL}/api/movieRating`, formData)
-            .then((res)=>{
-                alert('new movie rating added');
-                history.push('/');
-            })
-            .catch((err)=> setTimeout(()=>{
-                alert('Movie rating error')
-            },5000));
+        try{
+            const response =axios.post(`${API_URL}/api/movieRating`, formData);
+            console.log('Returned data:',response);
+            history.push('/');
+        }
+        catch(e){
+            console.log(`Axios request failed: ${e}`)
+        }
+
+        // axios
+        //     .post(`${API_URL}/api/movieRating`, formData)
+        //     .then((res)=>{
+        //         alert('new movie rating added');
+        //         history.push('/');
+        //     })
+        //     .catch((err)=> setTimeout(()=>{
+        //         alert('Movie rating error')
+        //     },5000));
     }
     if(!movies) return 'Movie Loading...';
     return ( 
