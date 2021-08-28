@@ -166,7 +166,7 @@ const getUserById = async (req, res)=>{
 
 const getUserByEmail = async (req, res)=>{
     console.log('login details came to backend');
-    console.log('Login email: '+req.body);
+    console.log('Login email: '+req.body.email);
     console.log('Login password: '+req.body.password);
     await User.findOne({email: req.body.email}, (err,user)=>{
         if(err){
@@ -184,9 +184,9 @@ const getUserByEmail = async (req, res)=>{
         // const validUser = res.json();
         console.log('password stored in db: '+user.password);
         if(bcrypt.compareSync(req.body.password,user.password)){
-            // return res.redirect('/');
             console.log('valid user')
-            return res.status(200).json({success: true, data: user});
+            return res.redirect('/');
+            // return res.status(200).json({success: true, data: user});
         }
         else
             req.session.error = 'Incorrect username or password';
