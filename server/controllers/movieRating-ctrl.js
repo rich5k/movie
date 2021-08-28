@@ -148,10 +148,26 @@ const getMovieRatings = async (req, res)=>{
     }).catch(err=> console.log(err))
 }
 
+const getMovieRatingsById = async (req, res)=>{
+    await MovieRating.find({movieId:req.params.movieId}, (err, movieRatings)=>{
+        if(err){
+            return res.status(400).json({success:false, error: err})
+        }
+        if(!movieRatings.length){
+            return res
+                .status(404)
+                .json({success: false, error: 'Movie rating not found'})
+        }
+        console.log('Movie ratings:',movieRatings);
+        return res.status(200).json({success: true, data: movieRatings})
+    }).catch(err=> console.log(err))
+}
+
 module.exports ={
     createMovieRating,
     updateMovieRating,
     deleteMovieRating,
     getMovieRatings,
     getMovieRatingById,
+    getMovieRatingsById,
 }
