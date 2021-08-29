@@ -154,13 +154,14 @@ const getMovieRatingsById = async (req, res)=>{
             return res.status(400).json({success:false, error: err})
         }
         if(!movieRatings.length){
+            const zeroRating=0.0;
             return res
-                .status(404)
-                .json({success: false, error: 'Movie rating not found'})
+                .status(200)
+                .json(zeroRating)
         }
         let sum = 0.0;
         let count =0;
-        movieRatings.map((mRating)=>{
+        movieRatings.map(mRating=>{
             sum+=mRating.rating;
             count++;
 
@@ -168,7 +169,7 @@ const getMovieRatingsById = async (req, res)=>{
         const avgRating= sum/count;
         console.log('Avg. ratings:',avgRating);
         console.log('Movie ratings:',movieRatings);
-        return res.status(200).json({success: true, data: avgRating})
+        return res.status(200).json(avgRating)
     }).catch(err=> console.log(err))
 }
 
