@@ -23,26 +23,37 @@ const MovieList = ({movies}) => {
         history.push(`${path}/${param}`);
       console.log('ID: '+movie);
     }
-
-    const avgRatings=async(id)=>{
-        const data = await axios
+    let count =0;
+    let iteration=0;
+    const avgRatings=(id)=>{
+        const data =  axios
           .get(`${API_URL}/api/movieRatings/${id}`)
           .then(res=> res.data);
         console.log(data)
+        count++;
+        console.log(count);
+        console.log(`Inside ratings loop for ${id}`,data);
+        // setRatings(data)
         return data;
         // return ratings;
     }
-    const getAvgRatings=(id)=>{
-      if(ratings===-1){
+    console.log("Outside ratings loop:",count);
+    // const getAvgRatings=(id)=>{
+    //   console.log("getAvgRatings function called to handle:",id)
+    //   if(ratings===-1){
+    //     console.log(id, "has default rating value -1")
+    //     avgRatings(id).then(
+    //       data=> setRatings(data)
+    //     )
+    //   }
+    //   iteration++;
+    //   console.log(`value of ratings for ${id} for iteration 
+    //   ${iteration} is ${ratings}`)
+    //   return ratings;
+    // }
 
-        avgRatings(id).then(
-          data=> setRatings(data)
-        )
-      }
-      return ratings;
-    }
     
-    console.log(movies.data);
+    // console.log(movies.data);
     return ( 
         <div className="movie-list">
             {movies.data.map((movie)=>(
@@ -57,8 +68,11 @@ const MovieList = ({movies}) => {
                             <svg class="mx-4 w-4 h-4 fill-current text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
                             <h3 class="content-title   ">
                                 {
-                                  getAvgRatings(movie._id)
-                                }/5.0</h3>
+                                  avgRatings(movie._id).then(
+                                      data=>setRatings(data)
+                                  )
+                                  
+                                }{ratings}/5.0</h3>
                             </div>
                             <p class="content-text">{movie.desc}</p>
                             <button onClick={routeChange2.bind(null,movie._id)} class="my-2 bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
